@@ -40,7 +40,7 @@ We welcome pull requests and feedback!
 | 10.45 | OptionExercises pt. 3 | 
 | 11.30 | ExceptionExercises | 
 | 12.15 | Lunch | 
-| 13.15 | Exceptions2EitherExercises | 
+| 13.15 | EitherExercises | 
 | 14.30 | TryExercises | 
 | 15.00 | Afternoon break | 
 | 15.30 | LogParser | 
