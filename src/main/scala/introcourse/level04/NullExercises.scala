@@ -1,5 +1,7 @@
 package introcourse.level04
 
+import introcourse.level04
+
 /**
   * These exercises are intended to show the problems that come with programming with `null`s.
   *
@@ -32,10 +34,10 @@ object NullExercises {
     **/
   def mkTrafficLightOrNull(str: String): TrafficLight =
     str match {
-      case "red" => ???
-      case "yellow" => ???
-      case "green" => ???
-      case _ => ???
+      case "red" => Red
+      case "yellow" => Yellow
+      case "green" => Green
+      case _ => null
     }
 
   /**
@@ -55,7 +57,14 @@ object NullExercises {
     *
     * Hint: Use `mkTrafficLightOrNull` and pattern matching
     */
-  def mkTrafficLightOrNullThenShow(str: String): String = ???
+  def mkTrafficLightOrNullThenShow(str: String): String = {
+    mkTrafficLightOrNull(str) match {
+      case level04.Red => "Traffic light is red"
+      case level04.Yellow =>"Traffic light is yellow"
+      case level04.Green =>"Traffic light is green"
+      case _ => "Traffic light is invalid"
+    }
+  }
 
   /**
     * Write a function that converts values from the real world into a `Person`.
@@ -74,7 +83,10 @@ object NullExercises {
     * scala> mkPersonOrNull("Bob", -1)
     * > null
     **/
-  def mkPersonOrNull(name: String, age: Int): Person = ???
+  def mkPersonOrNull(name: String, age: Int): Person = {
+    if(name.isEmpty || age < 0) null
+    else Person(name, age)
+  }
 
   /**
     * scala> mkPersonOrNullThenChangeName("Bob", 20, "John")
@@ -90,7 +102,10 @@ object NullExercises {
     **/
   def mkPersonOrNullThenChangeName(oldName: String, age: Int, newName: String): Person = {
     val personOrNull = mkPersonOrNull(oldName, age)
-    ???
+
+    if(newName.isEmpty) null
+    else if(personOrNull == null) null
+    else changeName(newName, personOrNull)
   }
 
   private def changeName(newName: String, person: Person): Person = person.copy(name = newName)
