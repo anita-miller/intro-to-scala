@@ -34,10 +34,10 @@ We welcome pull requests and feedback!
 
 | Time | Topic/Exercise |
 | :---: | :---: | 
-| 09.15 | Intro to Error Handling |
-| 10.00 | OptionExercises pt. 2 (second half) | 
+| 09.15 | OptionExercises pt. 2 (second half) |
+| 10.00 | OptionExercises pt. 3 | 
 | 10.30 | Morning break | 
-| 10.45 | OptionExercises pt. 3 | 
+| 10.45 | Intro to Error Handling | 
 | 11.30 | ExceptionExercises | 
 | 12.15 | Lunch | 
 | 13.15 | EitherExercises | 
