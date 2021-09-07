@@ -269,11 +269,12 @@ object ListExercises {
     */
   @SuppressWarnings(Array("org.wartremover.warts.Var"))
   def getNames(persons: List[Person]): List[String] = {
-    var names: List[String] = Nil
-    for (person <- persons) {
-      names = names :+ person.name
-    }
-    names
+//    var names: List[String] = Nil
+//    for (person <- persons) {
+//      names = names :+ person.name
+//    }
+//    names
+    persons.map(_.name)
   }
 
   /**
@@ -283,12 +284,13 @@ object ListExercises {
     */
   @SuppressWarnings(Array("org.wartremover.warts.Var"))
   def getAdults(persons: List[Person]): List[Person] = {
-    var adults: List[Person] = Nil
-    for (person <- persons) {
-      if (person.age >= 18)
-        adults = adults :+ person
-    }
-    adults
+//    var adults: List[Person] = Nil
+//    for (person <- persons) {
+//      if (person.age >= 18)
+//        adults = adults :+ person
+//    }
+//    adults
+    persons.filter(_.age >= 18)
   }
 
 
@@ -299,11 +301,12 @@ object ListExercises {
     */
   @SuppressWarnings(Array("org.wartremover.warts.Var"))
   def reverseList[A](xs: List[A]): List[A] = {
-    var result: List[A] = Nil
-    for (x <- xs) {
-      result = x :: result
-    }
-    result
+//    var result: List[A] = Nil
+//    for (x <- xs) {
+//      result = x :: result
+//    }
+//    result
+    xs.foldLeft(List.empty[A])((acc, element) => element :: acc)
   }
 
   /**
@@ -313,5 +316,16 @@ object ListExercises {
     * Given: val l1 = List("a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e", "e")
     * sublists(l1) == List(List("a", "a", "a", "a"), List("b"), List("c", "c"), List("a", "a"), List("d"), List("e", "e", "e", "e"))
     */
-  def sublists[A](xs: List[A]): List[List[A]] = ???
+  def sublists[A](xs: List[A]): List[List[A]] = {
+    xs.foldLeft(List.empty[List[A]])((result, element) =>
+      result match {
+        case (innerHead :: innerTail) :: next if innerHead == element => (element :: innerHead :: innerTail) :: next
+        case _ :: _ => List(element) :: result
+        case Nil => List(List(element))
+      }
+    ).reverse
+  }
+  sublists(List("a")) // List(List("a"))
+  sublists(List("a", "a")) // List(List("a", "a"))
+  sublists(List("a", "b")) // List(List("a"), List("b"))
 }
