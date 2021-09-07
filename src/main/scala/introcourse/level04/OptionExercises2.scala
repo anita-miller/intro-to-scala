@@ -15,9 +15,9 @@ object OptionExercises2 {
 
   type HumanId = Int
 
-  case class Job(name: String, description: String)
+  case class Job(name: String, description: String) // product type
 
-  case class Human(name: String, maybeJobId: Option[JobId])
+  case class Human(name: String, maybeJobId: Option[JobId]) // product type
 
   val jobsDatabase: Map[JobId, Job] = Map(
     1 -> Job("Teacher", "Expert in their field"),
@@ -39,7 +39,7 @@ object OptionExercises2 {
     *
     * Hint: Use `get` method on `humansDatabase` Map
     **/
-  def findHumanById(humanId: HumanId): Option[Human] = ???
+  def findHumanById(humanId: HumanId): Option[Human] = humansDatabase.get(humanId)
 
   /**
     * scala> findJobById(1)
@@ -50,7 +50,7 @@ object OptionExercises2 {
     *
     * Hint: Use `get` method on `jobsDatabase` Map
     **/
-  def findJobById(jobId: JobId): Option[Job] = ???
+  def findJobById(jobId: JobId): Option[Job] = jobsDatabase.get(jobId)
 
   /**
     * scala> findJobDescriptionGivenJobId1(1)
@@ -61,7 +61,13 @@ object OptionExercises2 {
     *
     * Hint: Use `findJobById` and then pattern match
     */
-  def findJobDescriptionGivenJobId1(jobId: JobId): Option[String] = ???
+  def findJobDescriptionGivenJobId1(jobId: JobId): Option[String] = {
+    val maybeJob: Option[Job] = findJobById(jobId)
+    maybeJob match {
+      case Some(job) => Some(job.description)
+      case None => None
+    }
+  }
 
   /**
     * Same as above, but use .map instead
@@ -79,10 +85,13 @@ object OptionExercises2 {
     * becomes
     *
     * ```
-    * maybeSomething.map(a => s"Got some $a")
+    * maybeSomething.map(a => s"Got some $a") // List(1,2,3).map(x => x + 100)
     * ```
     */
-  def findJobDescriptionGivenJobId2(jobId: JobId): Option[String] = ???
+  def findJobDescriptionGivenJobId2(jobId: JobId): Option[String] = {
+    val maybeJob: Option[Job] = findJobById(jobId)
+    maybeJob.map(job => job.description)
+  }
 
   /**
     * scala> findJobDescriptionGivenJobIdOrElse1(1)
