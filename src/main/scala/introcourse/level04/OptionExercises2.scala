@@ -89,8 +89,7 @@ object OptionExercises2 {
     * ```
     */
   def findJobDescriptionGivenJobId2(jobId: JobId): Option[String] = {
-    val maybeJob: Option[Job] = findJobById(jobId)
-    maybeJob.map(job => job.description)
+    findJobById(jobId).map(job => job.description)
   }
 
   /**
