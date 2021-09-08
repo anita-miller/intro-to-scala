@@ -18,7 +18,11 @@ object OptionExercises3 {
     * > Some(1)
     */
   def findJobIdByHumanIdUsingFor(humanId: HumanId): Option[JobId] =
-    findHumanById(humanId).flatMap(human => human.maybeJobId)
+    for {
+      human <- findHumanById(humanId)
+      jobId <- human.maybeJobId
+    } yield jobId
+
 
   /**
     * Rewrite this function using for-comprehension syntax.
@@ -27,7 +31,11 @@ object OptionExercises3 {
     * > Some(Job("Teacher", "Expert in their field"))
     */
   def findJobByHumanIdUsingFor(humanId: HumanId): Option[Job] =
-    findJobIdByHumanId(humanId).flatMap(jobId => findJobById(jobId))
+    for {
+      human <- findHumanById(humanId)
+      jobId <- human.maybeJobId
+      job <- findJobById(jobId)
+    } yield job
 
   /**
     * Rewrite this function using for-comprehension syntax.
@@ -39,5 +47,9 @@ object OptionExercises3 {
     * > None
     */
   def findJobNameByHumanIdUsingFor(humanId: HumanId): Option[String] =
-    findJobByHumanId(humanId).map(job => job.name)
+    for {
+      human <- findHumanById(humanId)
+      jobId <- human.maybeJobId
+      job <- findJobById(jobId)
+    } yield job.name
 }

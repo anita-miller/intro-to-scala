@@ -154,13 +154,18 @@ object ExceptionExercises {
     * What issues do you run into (if any)?
     */
   def collectErrors: List[Exception] = {
-    personStringPairs.map {
+    val listOfErrors: List[Object] = personStringPairs.map {
       case (name, age) =>
-        try{
+        try {
           createPerson(name,age)
         }catch {
-          
+          case e : EmptyNameException      => e
+          case e: InvalidAgeRangeException => e
+          case e: InvalidAgeValueException => e
         }
+    }
+    listOfErrors.collect{
+      case e: Exception => e
     }
   }
 }
