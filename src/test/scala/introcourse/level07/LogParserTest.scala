@@ -5,9 +5,6 @@ import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.funspec.AnyFunSpec
 
 class LogParserTest extends AnyFunSpec with TypeCheckedTripleEquals {
-  // TODO: Remove this import once you've defined the ADTs in LogParser
-  import Types._
-
   describe("parseIntOption") {
     it("should return the parsed integer for a valid integer") {
       val parsed = parseIntOption("123")
